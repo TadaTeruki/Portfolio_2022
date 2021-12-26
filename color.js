@@ -7,7 +7,7 @@ function make_color_elevation(r, g, b, elevation){
 	tc.elevation = elevation
 	return tc
 }
-
+/*
 var elevation_list = [
 	make_color_elevation(0.0, 0.3, 0.7, -8000.0/8000.0),
 	make_color_elevation(0.2, 0.7, 0.9, -5000.0/8000.0),
@@ -21,6 +21,16 @@ var elevation_list = [
 	make_color_elevation(0.2, 0.1, 0.4, 1800.0/8000.0),
     make_color_elevation(1.0, 1.0, 1.0, 3000.0/8000.0),
     make_color_elevation(0.0, 0.0, 0.0, 8000.0/8000.0),
+];
+*/
+
+var elevation_list = [
+    make_color_elevation(0.05, 0.25, 0.3, -8000/8000.0),
+    make_color_elevation(0.05, 0.3, 0.4, -500/8000.0),
+	make_color_elevation(0.1, 0.4, 0.5, -0.0/8000.0),
+	make_color_elevation(0.8, 0.85, 0.65, 0.0/8000.0),
+    make_color_elevation(0.25, 0.5, 0.25, 20.0/8000.0),
+    make_color_elevation(0.25, 0.5, 0.25, 8000.0/8000.0),
 ];
 
 function get_color_from_elevation(elevation){
