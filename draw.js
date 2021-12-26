@@ -1,7 +1,6 @@
 
 function scale_map(screen, center_stx, center_sty, scale){
     var image = screen.ctx.getImageData(0, 0, screen.canvas.width, screen.canvas.height);
-    var data = image.data
     var canvasInvisible=document.createElement('canvas');
     canvasInvisible.width=screen.canvas.width;
     canvasInvisible.height=screen.canvas.height;
@@ -16,14 +15,14 @@ function scale_map(screen, center_stx, center_sty, scale){
     return
 }
 
-function draw_map(screen, d_stx, d_sty, update){
+function draw_map(screen, d_stx, d_sty, fill_all_pixel, interruption_is_available){
     var remain_scx = Math.round(x_standard_to_canvas(screen, d_stx) - x_standard_to_canvas(screen, 0))
     var remain_scy = Math.round(y_standard_to_canvas(screen, d_sty) - y_standard_to_canvas(screen, 0))
     
     var image = screen.ctx.getImageData(remain_scx, remain_scy, screen.canvas.width, screen.canvas.height);
     var data = image.data
 
-    if(update == true){
+    if(fill_all_pixel == true){
         for(var i = 0; i<data.length; i+=4){
             if(data[i+3]!=255){
                 var iy = Math.floor((i/4)/image.width)
@@ -34,10 +33,9 @@ function draw_map(screen, d_stx, d_sty, update){
                 var color = get_color_from_elevation(elevation)
 
                 var brightness; {
-                    var shade_dist_st = 0.0005
                     var shadow_direction_xy = Math.PI*0.25
-                    var shade_elevation = get_elevation(screen, istx+shade_dist_st, isty+shade_dist_st)
-                    var dxt_xy = Math.atan((shade_elevation-elevation)*0.1/shade_dist_st)
+                    var shade_elevation = get_elevation(screen, istx+screen.config.shade_distance_st, isty+screen.config.shade_distance_st)
+                    var dxt_xy = Math.atan((shade_elevation-elevation)*0.1/screen.config.shade_distance_st)
                     var dxt_xy_d = dxt_xy-shadow_direction_xy
                     var brightness_prop = (elevation >= 0.0) ? 0.3:0.05
                     brightness = dxt_xy_d/(Math.PI*0.5)*brightness_prop+(1.0-brightness_prop)
@@ -55,9 +53,19 @@ function draw_map(screen, d_stx, d_sty, update){
     screen.ctx.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
     screen.ctx.putImageData(image, 0, 0);
 
+    return true
+
+}
+
+function shift_map(screen, d_stx, d_sty){
+    draw_map(screen, d_stx, d_sty, true, false);
 }
 
 function init_map(screen){
+    var image = screen.ctx.getImageData(0, 0, screen.canvas.width, screen.canvas.height);
     screen.ctx.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
-    draw_map(screen, 0, 0, true);
+    var succeed = draw_map(screen, 0, 0, true, true);
+    if(succeed == false){
+        screen.ctx.putImageData(image, 0, 0);
+    }
 }

@@ -5,8 +5,6 @@ function min(a,b){
     return b
 }
 
-
-
 function x_canvas_to_standard(screen, cx){
     return (cx-(screen.canvas.width-screen.square_cwh)*0.5)/screen.square_cwh*(screen.square.st_ex-screen.square.st_sx)+screen.square.st_sx;
 }

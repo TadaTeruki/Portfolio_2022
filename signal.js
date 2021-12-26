@@ -32,7 +32,9 @@ function update_wait_count(screen){
 
 function set_map_init(screen){
     var wait_count_now = screen.wait_count
-    setTimeout(function(){
+    clearTimeout(screen.init_map_timeout)
+
+    screen.init_map_timeout = setTimeout(function(){
         if(screen.wait_count == wait_count_now){
             init_map(screen)
         }
@@ -40,12 +42,15 @@ function set_map_init(screen){
 }
 
 function zoom_process(mouse_device, screen, wheel_event){
+    
     if ( mouse_device.is_held == true ) {
         return
     }
-    update_wait_count(screen)
 
-    var scale = Math.pow(1.05, wheel_event.deltaY);
+    update_wait_count(screen)
+    set_map_init(screen)
+
+    var scale = Math.pow(screen.config.zoom_scale, wheel_event.deltaY);
     
     var p_square = screen.square
     var xw = p_square.st_ex-p_square.st_sx
@@ -63,9 +68,9 @@ function zoom_process(mouse_device, screen, wheel_event){
     screen.square = p_square
 
     scale_map(screen, mouse_device.pos_stx, mouse_device.pos_sty, scale);
-    draw_map(screen, 0, 0, true);
+    shift_map(screen, 0, 0);
 
-    set_map_init(screen)
+    
 }
 
 
@@ -77,6 +82,10 @@ function scroll_process(mouse_device, screen, mouse_event){
     if ( mouse_device.is_held == false ) {
         return
     }
+
+    update_wait_count(screen)
+    set_map_init(screen)
+
     var event_stx = x_canvas_to_standard(screen, mouse_event.x)
     var event_sty = y_canvas_to_standard(screen, mouse_event.y)
 
@@ -90,6 +99,6 @@ function scroll_process(mouse_device, screen, mouse_event){
     p_square.st_ey = p_square.st_ey+d_sty
     screen.square = p_square
     
-    draw_map(screen, d_stx, d_sty, true);
+    shift_map(screen, d_stx, d_sty);
 
 }

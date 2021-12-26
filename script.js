@@ -1,22 +1,30 @@
 
-
-function main(){
-    var screen = {};
+function set_screen(screen){
     screen.canvas = document.getElementById("canvas_src");
     screen.canvas.width = window.innerWidth;
     screen.canvas.height = window.innerHeight;
     screen.square_cwh = min(screen.canvas.width, screen.canvas.height);
     screen.ctx = screen.canvas.getContext("2d");
-    var map_scale = 1.0
+    var map_scale = 0.2
     screen.square = {st_sx:0.0, st_sy:0.0, st_ex:map_scale, st_ey:map_scale, root_st_sx:0.0, root_st_sy:0.0, root_st_ex:map_scale, root_st_ey:map_scale}
     screen.noise_quality = 12
     screen.wait_count = 0
+    screen.init_map_timeout = null
 
     screen.config = {}
-    screen.config.map_init_process_wait_sec = 0.75
+    screen.config.map_init_process_wait_sec = 0.5
+    screen.config.shade_distance_st = 0.0005
+    screen.config.zoom_scale = 1.02
+}
+
+
+function main(){
 
     noise.seed(0);
 
+    var screen = {}
+
+    set_screen(screen)
     init_map(screen)
 
     var mouse_device = {}
