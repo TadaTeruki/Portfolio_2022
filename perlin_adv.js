@@ -17,15 +17,15 @@ function get_octave_noise(x, y, octaves, persistence){
     return total/maxval
 }
 
-function get_noise_level(screen, stx, sty){
+function get_noise_level(stx, sty, noise_quality, persistence){
     return remove_fade(
         get_octave_noise(
             stx, sty,
-            screen.noise_quality, 0.6
+            noise_quality, persistence
         )
     );
 }
 
-function get_elevation(screen, stx, sty){
-    return get_elevation_from_noise_level(get_noise_level(screen, stx, sty));
+function get_elevation(stx, sty){
+    return get_elevation_from_noise_level(get_noise_level(stx, sty, screen.config.noise_quality_eleation, screen.config.noise_persistence_eleation));
 }
