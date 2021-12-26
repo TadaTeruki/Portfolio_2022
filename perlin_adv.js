@@ -27,5 +27,5 @@ function get_noise_level(stx, sty, noise_quality, persistence){
 }
 
 function get_elevation(stx, sty){
-    return get_elevation_from_noise_level(get_noise_level(stx, sty, screen.config.noise_quality_eleation, screen.config.noise_persistence_eleation));
+    return get_elevation_from_noise_level(get_noise_level(stx, sty, global_config.noise_quality_eleation, global_config.noise_persistence_eleation));
 }

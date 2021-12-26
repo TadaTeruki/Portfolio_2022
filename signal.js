@@ -25,7 +25,7 @@ function end_scrolling(mouse_device, mouse_event){
 
 function update_wait_count(){
     screen.wait_count++
-    if(screen.wait_count == screen.config.map_init_process_wait_sec*1000*2){
+    if(screen.wait_count == global_config.map_init_process_wait_sec*1000*2){
         screen.wait_count = 0
     }
 }
@@ -38,7 +38,7 @@ function set_map_init(){
         if(screen.wait_count == wait_count_now){
             init_map()
         }
-    },screen.config.map_init_process_wait_sec*1000)
+    },global_config.map_init_process_wait_sec*1000)
 }
 
 function zoom_process(mouse_device, wheel_event){
@@ -50,7 +50,7 @@ function zoom_process(mouse_device, wheel_event){
     update_wait_count()
     set_map_init()
 
-    var scale = Math.pow(screen.config.zoom_scale, wheel_event.deltaY);
+    var scale = Math.pow(global_config.zoom_scale, wheel_event.deltaY);
     
     var p_square = screen.square
     var xw = p_square.st_ex-p_square.st_sx
