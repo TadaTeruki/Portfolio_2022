@@ -21,14 +21,14 @@
     <script src="script.js"></script>
     
     <body onload="main()">
-        <canvas id="canvas_src"></canvas>
+        <!--<canvas id="canvas_src"></canvas>-->
 
         <div id="document_src">
 
 <div class="Title_f">
-    <!--<div class="Title_border_f"></div>-->
     <div class="Title_text_f">
         <div class="Line_light_f"></div>
+        
         <span style="font-size:50px;">Tada Teruki</span><span style="font-size:30px;">'s Portfolio</span>
         <br>
         <a href="https://twitter.com/PerukiFUN" target="_blank"><img src="Twitter_logo.png" class="Icon_f Twitter_Icon_f" style="margin-right:20px;"></a>
@@ -47,19 +47,127 @@
 <div class="Title_border_f"></div>
 
 <div class="Context_f">
-<div class="Subtitle_f">所属 <span class="Subtitle_note_f">Affiliation</span></div>
-<div class="Line_subtitle_f"></div>
+    <div class="Subtitle_f">所属 <span class="Subtitle_note_f">Affiliation</span></div>
+    <div class="Line_subtitle_f"></div>
 
-<div class="Plain_text_f">
-京都府立清明高等学校 (昼間定時制・4年卒コース)
-<br>
-<span class="Plain_text_note_f">・公立はこだて未来大学 システム情報科学部 入学予定</span>
+    <div class="Plain_text_f">
+    京都府立清明高等学校 (昼間定時制・4年卒コース)
+    <br>
+    <span class="Plain_text_note_f">・公立はこだて未来大学 システム情報科学部 入学予定</span>
 
+    </div>
+    <div class="Subtitle_f">活動・制作 <span class="Subtitle_note_f">Works</span> </div>
+    <div class="Line_subtitle_f"></div>
+
+    <div class="Category_f">情報科学研究</div>
+    <div class="Category_f">ソフトウェア開発</div>
+    <div class="Plain_text_f">
+    主なプロジェクト
+    <br>
+    <br>
+    <table>
+        <tr>
+        <td>
+            ・RDGL<span class="Plain_text_note_f"> - Realistic procedural DEM generation library</span>
+            <br>
+            <div class="Plain_text_details_f">
+            2021/10/19 ~&emsp;[<a href="https://github.com/TadaTeruki/RDGL" target="_blank">Github</a>]
+            <br>
+            Go製の数値標高モデル(DEM)生成ライブラリ。
+            <br>
+            実在する地形(平地・山脈・大陸棚・リアス海岸等)に基づいた、高度なDEMの自動生成を目指す。
+            </div>
+            <div class="Line_development_table_f"></div>
+        </td>
+        <td style="padding-left: 50px;">
+            <img src="https://user-images.githubusercontent.com/69315285/146559610-53b8e21f-3574-4cff-a7ee-0b7c13c32c13.png" style="height: 150px; margin-right: 10px;"><img src="https://user-images.githubusercontent.com/69315285/146560007-9976a0e6-a81e-4533-a7aa-e200611d8a06.png" style="height: 150px;">
+            
+        </td>
+        </tr>
+        <tr>
+            <td>
+                ・MiteWM
+                <br>
+                <div class="Plain_text_details_f">
+                2020/7/29 ~ "TeapotWM"に継承&emsp;[<a href="https://github.com/Perukii/MiteWM" target="_blank">Github</a>]
+                <br>
+                C製のLinux系OS用ウインドウマネージャ(WM)。
+                <br>
+                X11ベース。
+                <br>
+                軽量・高速なWMを追求する他、ウインドウマネージャの制作過程そのものの再発掘を目指す。
+                </div>
+                <div class="Line_development_table_f"></div>
+            </td>
+            <td style="padding-left: 50px;">
+                <img src="https://user-images.githubusercontent.com/57752033/89993297-73557280-dcc1-11ea-9b95-777de9911a19.png" style="height: 150px;">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ・交通網シュミレータ
+                <br>
+                <div class="Plain_text_details_f">
+                2021/4/30 ~ 終了&emsp;[<a href="https://github.com/Perukii/TransportNetworkSimulator" target="_blank">Github</a>]
+                <br>
+                Go製の交通網生成プログラム。
+                <br>
+                国土地理院の公開する数値標高モデル(DEM)をもとに、日本の主要交通網の路線を予測・生成する。
+                <br>
+                    
+                </div>
+                <div class="Line_development_table_f"></div>
+            </td>
+            <td style="padding-left: 50px;">
+                <img src="TNS.png" style="height: 150px;">
+            </td>
+        </tr>
+    </table>
+    <br>
+    すべてのプロジェクト(制作日時順)
+    <br>
+    <br>
+    ・ポートフォリオ(2022年版) <span class="Plain_text_note_f"> 2021/12/24 ~ </span> [<a href="https://github.com/TadaTeruki/Portfolio_2022" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;ポートフォリオ(本サイト) </div>
+    ・RDGL
+    <div class="Plain_text_note_f"> &emsp;&emsp;上記参照 </div>
+    ・TeapotWM<span class="Plain_text_note_f"> 2021/5/20 ~ </span> [<a href="https://github.com/Perukii/teapot_wm" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;Go製のウインドウマネージャ </div>
+    ・交通網シミュレータ
+    <div class="Plain_text_note_f"> &emsp;&emsp;上記参照 </div>
+    ・TransportMaker1<span class="Plain_text_note_f"> 2021/2/1 ~ "交通網シミュレータ"に継承</span> [<a href="https://github.com/Perukii/TransportMaker1" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;交通網シュミレータの初期実装。アルゴリズム面に多くの課題が存在した </div>
+    ・ポートフォリオ(2020/2021年版) <span class="Plain_text_note_f"> 2020/11/28 ~ 終了</span> [<a href="https://github.com/TadaTeruki/Portfolio" target="_blank">Github</a>][<a href="https://tadateruki.github.io/Portfolio/src/index.html" target="_blank">Deployment</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;旧ポートフォリオ </div>
+    ・DBSCAN-test<span class="Plain_text_note_f"> 2020/10/7 ~ 終了</span> [<a href="https://github.com/Perukii/DBSCAN-test" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;DBSCANの実装テスト </div>
+    ・Go練習用のワクワクドキドキテキストアドベンチャー <span class="Plain_text_note_f"> 2020/9/30 ~ 終了</span> [<a href="https://github.com/Perukii/goTextAdv" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;Go練習用のワクワクドキドキテキストアドベンチャー </div>
+    ・MiteWM
+    <div class="Plain_text_note_f"> &emsp;&emsp;上記参照 </div>
+    ・三密WM<span class="Plain_text_note_f"> 2020/7/25 ~ "MiteWM"に継承</span> [<a href="https://github.com/Perukii/sanmitsu-wm" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;実装に成功した最初のウインドウマネージャ </div>
+    ・CairoPicker<span class="Plain_text_note_f"> 2020/6/20 ~ 終了</span> [<a href="https://github.com/Perukii/cairo_picker" target="_blank">Github</a>]
+    <div class="Plain_text_note_f"> &emsp;&emsp;C++製の簡易描画プラットフォーム </div>
+    
 </div>
-<div class="Subtitle_f">活動歴 <span class="Subtitle_note_f">Work & Career</span> </div>
-<div class="Line_subtitle_f"></div>
 
-
+    
+    <div class="Subtitle_f">このページについて <span class="Subtitle_note_f">About this page</span></div>
+    <div class="Line_subtitle_f"></div>
+    <div class="Plain_text_f">
+        このページの<u>右</u>に表示されている航空写真は、自動生成によるものであり、<u>無限に続いています。</u>
+        <br>
+        ぜひこの地図を眺めながら、地形生成の魅力を実感していただければと思います。
+        <br>
+        <span class="Plain_text_note_f"> &emsp;マウス(または指)でのドラッグにより、地図のフォーカスが移動します。</span>
+        <br>
+        <span class="Plain_text_note_f"> &emsp;マウスホイール操作やピンチイン/アウトにより、地図の表示範囲の大きさが変化します。</span>
+        <br>
+        <br>
+        このポートフォリオを気に入られた方は、ぜひともGitHubのStar⭐をお願いします。
+        <br>
+    </div>
 
 </div>
 
