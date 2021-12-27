@@ -10,10 +10,14 @@ function get_community_level(stx, sty, elevation){
 }
 
 function get_community_level_from_noise_level(nlv, elevation) {
-    
-    var fixed_nlv = nlv*Math.pow(Math.abs(1.0-elevation),80)
+
+    if(elevation < 0.0) return 0.0
+
+    var best_elv = 68/8000
+    var fixed_nlv = nlv*(Math.pow(1.0-Math.abs(elevation-best_elv),40)*0.9+0.1)
     var base_cl = (fixed_nlv-(1.0-global_config.community_area_prop))/global_config.community_area_prop
-    if(base_cl < 0.0 || elevation < 0.0) base_cl = 0.0
     
-    return base_cl
+    var best_cl = 1.0
+    
+    return Math.max(1.0-Math.abs(base_cl-best_cl), 0.0)
 }

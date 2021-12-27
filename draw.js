@@ -1,19 +1,24 @@
 
 function scale_map(center_stx, center_sty, scale){
-    var image = screen.ctx.getImageData(0, 0, screen.canvas.width, screen.canvas.height);
-    var canvasInvisible=document.createElement('canvas');
-    canvasInvisible.width=screen.canvas.width;
-    canvasInvisible.height=screen.canvas.height;
-    ctx2 = canvasInvisible.getContext('2d');
+    var image = screen.subctx.getImageData(0, 0, screen.subcanvas.width, screen.subcanvas.height);
+    var canvasInvisible=document.createElement("canvas");
+    canvasInvisible.width=screen.subcanvas.width;
+    canvasInvisible.height=screen.subcanvas.height;
+    ctx2 = canvasInvisible.getContext("2d");
     ctx2.putImageData(image, 0, 0);
     var d_cx = x_standard_to_canvas(center_stx)*(scale-1.0)
     var d_cy = y_standard_to_canvas(center_sty)*(scale-1.0)
-    screen.ctx.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
-    screen.ctx.scale(1.0/scale, 1.0/scale);
-    screen.ctx.drawImage(canvasInvisible, d_cx, d_cy);
-    screen.ctx.scale(scale, scale);
-    return
+    screen.subctx.clearRect(0, 0, screen.subcanvas.width, screen.subcanvas.height);
+    screen.subctx.scale(1.0/scale, 1.0/scale);
+    screen.subctx.drawImage(canvasInvisible, d_cx, d_cy);
+    screen.subctx.scale(scale, scale);
 }
+
+function display_map(){
+    var image = screen.subctx.getImageData(0, 0, screen.subcanvas.width, screen.subcanvas.height);
+    screen.ctx.putImageData(image, 0, 0);
+}
+
 
 function get_mark_cell_id(stx, sty, mark_cell_st){
     var r_x = Math.floor(stx/mark_cell_st)
@@ -28,14 +33,15 @@ function direct_get_community_level(stx, sty){
     return get_community_level(stx, sty, get_elevation(stx, sty))
 }
 
-function get_community_mark_from_cell_id(id_x, id_y, mark_cell_st){
+function get_community_mark_from_cell_id(id_x, id_y, mark_cell_st, unit_scale){
+
     var s_stx = id_x*mark_cell_st
     var e_stx = (id_x+1)*mark_cell_st
     var s_sty = id_y*mark_cell_st
     var e_sty = (id_y+1)*mark_cell_st
 
-    var check_st_x = (e_stx-s_stx)/10
-    var check_st_y = (e_sty-s_sty)/10
+    var check_st_x = (e_stx-s_stx)*unit_scale
+    var check_st_y = (e_sty-s_sty)*unit_scale
 
     var max_community_level = 0.0
     var r_stx = 0.0
@@ -67,10 +73,11 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
     var remain_scx = Math.round(x_standard_to_canvas(d_stx) - x_standard_to_canvas(0))
     var remain_scy = Math.round(y_standard_to_canvas(d_sty) - y_standard_to_canvas(0))
 
-    var image = screen.ctx.getImageData(remain_scx, remain_scy, screen.canvas.width, screen.canvas.height);
+    var image = screen.subctx.getImageData(remain_scx, remain_scy, screen.subcanvas.width, screen.subcanvas.height);
     var data = image.data
     var nw_cell_id, se_cell_id//get_mark_cell_id(istx, isty, 0.1)
-    var community_list_by_cell_id = {} // {max_community_level, stx, sty}
+    //var community_list_by_cell_id = {} // {max_community_level, stx, sty}
+    
 
     if(fill_all_pixel == true){
         for(var i = 0; i<data.length; i+=4){
@@ -111,27 +118,12 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
                 
                 var community_level = get_community_level(istx, isty, elevation)
                 
-                var community_color = get_color_from_community_level(community_level, global_config.community_area_prop)
+                var community_color = get_color_from_community_level(community_level,
+                                        global_config.community_area_prop, global_config.community_mark_position_unit_scale)
                 var color_prop = community_color.a
                 color.r = community_color.r*color_prop+color.r*(1.0-color_prop)
                 color.g = community_color.g*color_prop+color.g*(1.0-color_prop)
                 color.b = community_color.b*color_prop+color.b*(1.0-color_prop)
-
-                cell_id = get_mark_cell_id(istx, isty, global_config.community_mark_cell_st)
-                if((cell_id.y in community_list_by_cell_id) == false){
-                    community_list_by_cell_id[cell_id.y] = {}
-                }
-                if((cell_id.x in community_list_by_cell_id[cell_id.y]) == false ||
-                   community_list_by_cell_id[cell_id.y][cell_id.x].first == true ||
-                   community_list_by_cell_id[cell_id.y][cell_id.x].max_community_level < community_level){
-
-                    community_list_by_cell_id[cell_id.y][cell_id.x] ={
-                        max_community_level:community_level,
-                        stx:istx,
-                        sty:isty,
-                    }
-                }
-                
 
             }
             
@@ -143,19 +135,24 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
         }
     }
 
-    screen.ctx.clearRect(0, 0, screen.canvas.width, screen.canvas.height)
-    screen.ctx.putImageData(image, 0, 0)
-    
+    screen.subctx.clearRect(0, 0, screen.subcanvas.width, screen.subcanvas.height)
+    screen.subctx.putImageData(image, 0, 0)
+
+    display_map()
     for(var id_y = nw_cell_id.y; id_y <= se_cell_id.y; id_y += 1){
         for(var id_x = nw_cell_id.x; id_x <= se_cell_id.x; id_x += 1){
-            if((id_y in community_list_by_cell_id == false)||(id_x in community_list_by_cell_id[id_y] == false))continue
-            var community_mark_st = community_list_by_cell_id[id_y][id_x]
+            if(id_y in global_community_list_by_cell_id == false){
+                global_community_list_by_cell_id[id_y] = {}
+            }
+            if(id_x in global_community_list_by_cell_id[id_y] == false){
+                global_community_list_by_cell_id[id_y][id_x] = get_community_mark_from_cell_id(id_x, id_y, global_config.community_mark_cell_st, global_config.community_mark_position_unit_scale)
+            }
+            var community_mark = global_community_list_by_cell_id[id_y][id_x]
             screen.ctx.beginPath();
-            screen.ctx.arc(x_standard_to_canvas(community_mark_st.stx), y_standard_to_canvas(community_mark_st.sty), 5, 0, Math.PI*2, false)
+            screen.ctx.arc(x_standard_to_canvas(community_mark.stx), y_standard_to_canvas(community_mark.sty), 5, 0, Math.PI*2, false)
             screen.ctx.fill()
         }
-    }
-    
+    }  
     
     return true
 }
@@ -165,10 +162,7 @@ function shift_map(d_stx, d_sty){
 }
 
 function init_map(){
-    var image = screen.ctx.getImageData(0, 0, screen.canvas.width, screen.canvas.height);
-    screen.ctx.clearRect(0, 0, screen.canvas.width, screen.canvas.height);
-    var succeed = draw_map(0, 0, true);
-    if(succeed == false){
-        screen.ctx.putImageData(image, 0, 0);
-    }
+    global_community_list_by_cell_id = {}
+    screen.subctx.clearRect(0, 0, screen.subcanvas.width, screen.subcanvas.height);
+    draw_map(0, 0, true);
 }

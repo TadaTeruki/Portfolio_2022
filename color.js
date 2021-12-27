@@ -62,14 +62,14 @@ function get_color_from_elevation(elevation){
 function get_color_from_community_level(community_level, community_area_prop){
 	var target = {}
 	var max_community_color = {r:162,g:164,b:148}
-	var min_community_color = {r:130,g:119,b:80}
+	var min_community_color = {r:100,g:130,b:70}
 	var prop = community_level
 	
 	target.r = (max_community_color.r*prop + min_community_color.r*(1.0-prop))
 	target.g = (max_community_color.g*prop + min_community_color.g*(1.0-prop))
 	target.b = (max_community_color.b*prop + min_community_color.b*(1.0-prop))
 
-	target.a = 1.0-Math.pow(1.0-prop,15)
+	target.a = 1.0-Math.pow(1.0-prop,10)
     
 	return target
 }
