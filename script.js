@@ -1,10 +1,16 @@
 
 
+function init(){
+    set_screen()
+    setTimeout(function(){
+        main()
+    },100)
+}
+
 function main(){
 
     noise.seed(6);
 
-    set_screen()
     init_map()
 
     var mouse_device = {}
