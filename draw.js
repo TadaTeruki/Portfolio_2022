@@ -139,6 +139,10 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
     screen.subctx.putImageData(image, 0, 0)
 
     display_map()
+
+    return
+
+    /*community_mark*/
     for(var id_y = nw_cell_id.y; id_y <= se_cell_id.y; id_y += 1){
         for(var id_x = nw_cell_id.x; id_x <= se_cell_id.x; id_x += 1){
             if(id_y in global_community_list_by_cell_id == false){
@@ -152,9 +156,7 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
             screen.ctx.arc(x_standard_to_canvas(community_mark.stx), y_standard_to_canvas(community_mark.sty), 5, 0, Math.PI*2, false)
             screen.ctx.fill()
         }
-    }  
-    
-    return true
+    } 
 }
 
 function shift_map(d_stx, d_sty){

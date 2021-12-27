@@ -1,4 +1,11 @@
 
+function x_event_to_canvas(ex){
+    return ex-window.innerWidth*global_config.canvas_x_scale
+}
+function y_event_to_canvas(ey){
+    return ey-window.innerHeight*global_config.canvas_y_scale
+}
+
 function set_square_root(){
     var p_square = screen.square
     p_square.root_st_sx = p_square.st_sx
@@ -10,8 +17,8 @@ function set_square_root(){
 
 function start_scrolling(mouse_device, mouse_event){
     mouse_device.is_held = true
-    mouse_device.root_stx = x_canvas_to_standard(mouse_event.x)
-    mouse_device.root_sty = y_canvas_to_standard(mouse_event.y)
+    mouse_device.root_stx = x_canvas_to_standard(x_event_to_canvas(mouse_event.x))
+    mouse_device.root_sty = y_canvas_to_standard(y_event_to_canvas(mouse_event.y))
     set_square_root()
 }
 
@@ -76,8 +83,8 @@ function zoom_process(mouse_device, wheel_event){
 
 function scroll_process(mouse_device, mouse_event){
     
-    mouse_device.pos_stx = x_canvas_to_standard(mouse_event.x)
-    mouse_device.pos_sty = y_canvas_to_standard(mouse_event.y)
+    mouse_device.pos_stx = x_canvas_to_standard(x_event_to_canvas(mouse_event.x))
+    mouse_device.pos_sty = y_canvas_to_standard(y_event_to_canvas(mouse_event.y))
 
     if ( mouse_device.is_held == false ) {
         return
@@ -86,8 +93,8 @@ function scroll_process(mouse_device, mouse_event){
     //update_wait_count()
     //set_map_init()
 
-    var event_stx = x_canvas_to_standard(mouse_event.x)
-    var event_sty = y_canvas_to_standard(mouse_event.y)
+    var event_stx = x_canvas_to_standard(x_event_to_canvas(mouse_event.x))
+    var event_sty = y_canvas_to_standard(y_event_to_canvas(mouse_event.y))
 
     var d_stx = mouse_device.root_stx-event_stx
     var d_sty = mouse_device.root_sty-event_sty

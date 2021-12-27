@@ -2,9 +2,7 @@
 
 function main(){
 
-    noise.seed(0);
-
-    
+    noise.seed(6);
 
     set_screen()
     init_map()

@@ -1,0 +1,93 @@
+html,body,canvas {
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
+}
+body {
+    background-color:#dad9d2;
+}
+
+.Line_light_f{
+    background: #5e5e5e;
+    height: 1px;
+    margin: 10px 10% 10px 10%;
+}
+
+.Line_subtitle_f{
+    border-bottom:dotted 2px #334239;
+    height: 1px;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+
+.Title_border_f{
+    background: linear-gradient(45deg, #2f5a3a, #5e5e5e);
+    box-shadow: 0px 0px 5px #5e5e5e;
+    
+    /*border-radius: 8px;*/
+    height: 8px;
+    width: 100%;
+}
+.Github_Icon_f{
+    background: linear-gradient(45deg, #1a1a1a, #505050);
+    padding: 7px 7px 7px 7px;
+    height:30px;
+}
+.Twitter_Icon_f{
+    background: linear-gradient(45deg, #1da1f2, #32b0ff);
+    padding: 10px 8px 10px 8px;
+    height: 24px;
+}
+.Icon_f{
+    box-shadow: 1px 1px 5px #5e5e5e;
+    border-radius: 8px;
+}
+.Title_f{
+    display: table;
+    background: linear-gradient(45deg, #bbb49c, #d8d8d8);
+    width: 100%;
+}
+.Title_text_f{
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: center;
+    color: #3d3d3d;
+    padding: 10px 10px 10px 10px;
+
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.Context_f{
+    margin-left: 10%;
+    margin-right: 10%;
+    
+}
+
+.Subtitle_f{
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 13%;
+    color: #243325;
+    font-size: 28px;
+}
+
+.Subtitle_note_f{
+    color: #3d4d3e;
+    font-size: 20px;
+}
+
+.Plain_text_f{
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 18%;
+    margin-right: 18%;
+    color: #243325;
+    font-size: 15px;
+}
+
+.Plain_text_note_f{
+    color: #506352;
+}
