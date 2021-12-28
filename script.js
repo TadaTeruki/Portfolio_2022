@@ -7,6 +7,35 @@ function init(){
     },100)
 }
 
+function set_aspect(){
+
+    var width_scale, height_scale
+
+    screen.mobile_mode = window.innerWidth*(1.0+global_config.min_acpect_scale) < window.innerHeight
+
+    if(screen.mobile_mode){
+        width_scale = 1.0
+        height_scale = global_config.min_acpect_scale
+    } else {
+        width_scale = global_config.min_acpect_scale
+        height_scale = 1.0
+    }
+    screen.canvas.x_scale = 1.0 - width_scale 
+    screen.canvas.y_scale = 1.0 - height_scale
+    screen.canvas.style.left = window.innerWidth*screen.canvas.x_scale
+    screen.canvas.style.top = window.innerHeight*screen.canvas.y_scale
+    screen.canvas.width = window.innerWidth*width_scale
+    screen.canvas.height = window.innerHeight*height_scale
+    screen.subcanvas.width = screen.canvas.width
+    screen.subcanvas.height = screen.canvas.height
+    screen.docs.style.width = screen.mobile_mode ? window.innerWidth:screen.canvas.style.left
+    screen.docs.style.height = window.innerHeight
+    screen.square_cwh = min(screen.subcanvas.width, screen.subcanvas.height)
+    screen.canvas.style.position = screen.mobile_mode ? "static":"fixed"
+    screen.zoom_process_is_enabled = screen.mobile_mode ? false:true
+
+}
+
 function main(){
 
     noise.seed(6);
@@ -21,7 +50,7 @@ function main(){
     mouse_device.pos_sty  = 0.0
 
     var auto_scroll = {}
-    auto_scroll.interval = 70
+    auto_scroll.interval = 100
     auto_scroll.max_wait = 0
     auto_scroll.max_speed_st = 1.0
     var auto_scroll_speed_st = 0.0
@@ -63,6 +92,10 @@ function main(){
         if( mouse_device.is_held == true ){
             auto_scroll_enabled = false
         }
+    });
+
+    window.addEventListener('resize', event => {
+        set_aspect()
     });
 
     

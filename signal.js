@@ -1,9 +1,9 @@
 
 function x_event_to_canvas(ex){
-    return ex-window.innerWidth*global_config.canvas_x_scale
+    return ex-window.innerWidth*screen.canvas.x_scale
 }
 function y_event_to_canvas(ey){
-    return ey-window.innerHeight*global_config.canvas_y_scale
+    return ey-window.innerHeight*screen.canvas.y_scale
 }
 
 function set_square_root(){
@@ -50,7 +50,7 @@ function set_map_init(){
 
 function zoom_process(mouse_device, wheel_event){
     
-    if ( mouse_device.is_held == true ) {
+    if ( mouse_device.is_held == true || screen.zoom_process_is_enabled == false) {
         return
     }
 

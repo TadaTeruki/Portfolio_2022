@@ -1,5 +1,6 @@
 
 var screen = {}
+var global_config = {}
 var global_community_list_by_cell_id = {}
 
 function set_screen(){
@@ -17,8 +18,6 @@ function set_screen(){
     global_config.shade_distance_st = 0.0001
     global_config.community_mark_cell_st = 1.0/global_config.community_dencity
     global_config.community_mark_position_unit_scale = 0.2
-    global_config.canvas_x_scale = 1.0 - global_config.canvas_width_scale 
-    global_config.canvas_y_scale = 0.0
     global_config.community_is_available = false
 
     global_config.cloud_dencity = 5.0
@@ -27,24 +26,17 @@ function set_screen(){
     global_config.cloud_shadow_st = 0.005
     global_config.noise_quality_cloud = 8
     global_config.noise_persistence_cloud = 0.6
+    global_config.min_acpect_scale = 0.3
 
     screen.canvas = document.getElementById("canvas_src");
+
+    screen.docs = document.getElementById("document_src");
     screen.ctx = screen.canvas.getContext("2d");
     screen.subcanvas = document.createElement("canvas");
     screen.subctx = screen.subcanvas.getContext("2d");
-    screen.canvas.style.left = window.innerWidth*global_config.canvas_x_scale
-    screen.canvas.style.top = window.innerHeight*global_config.canvas_y_scale
-    screen.canvas.style.position = "fixed"
-    screen.canvas.width = window.innerWidth*global_config.canvas_width_scale
-    screen.canvas.height = window.innerHeight*global_config.canvas_height_scale
-    screen.subcanvas.width = screen.canvas.width;
-    screen.subcanvas.height = screen.canvas.height;
-    screen.square_cwh = min(screen.subcanvas.width, screen.subcanvas.height);
 
-    screen.docs = document.getElementById("document_src");
-    screen.docs.style.width = screen.canvas.style.left
-    
-    
+    set_aspect()
+
     screen.square = {st_sx:0.0,
                      st_sy:0.0,
                      st_ex:global_config.map_scale,

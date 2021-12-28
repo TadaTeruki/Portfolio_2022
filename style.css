@@ -7,6 +7,11 @@ body {
     background-color:#dad9d2;
 }
 
+canvas{
+    
+    background-color:#104668;
+}
+
 .Line_light_f{
     background: #5e5e5e;
     height: 1px;
@@ -16,7 +21,7 @@ body {
 .Line_subtitle_f{
     border-bottom:dotted 2px #334239;
     height: 1px;
-    margin-left: 10%;
+    margin-left: 3%;
     margin-right: 10%;
 }
 
@@ -76,14 +81,13 @@ body {
 .Context_f{
     margin-left: 5%;
     margin-right: 5%;
-    
 }
 
 .Subtitle_f{
     font-family: 'Noto Sans JP', sans-serif;
     text-align: left;
     margin-top: 50px;
-    margin-left: 13%;
+    margin-left: 5%;
     color: #243325;
     font-size: 28px;
 }
@@ -97,7 +101,7 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     text-align: left;
     margin-top: 20px;
-    margin-left: 13%;
+    margin-left: 5%;
     color: #243325;
     font-size: 20px;
 }
@@ -106,8 +110,8 @@ body {
     font-family: 'Noto Sans JP', sans-serif;
     text-align: left;
     margin-top: 20px;
-    margin-left: 18%;
-    margin-right: 18%;
+    margin-left: 8%;
+    margin-right: 8%;
     color: #243325;
     font-size: 16px;
     line-height: 25px;
@@ -124,4 +128,12 @@ body {
 
 .Prize_f{
     color: #830000;
+}
+
+@media only screen and (max-width: 700px) {
+    .Mobile-table tr,
+    .Mobile-table th,
+    .Mobile-table td {
+        display: block;
+    }
 }

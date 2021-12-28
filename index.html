@@ -4,11 +4,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="style.css">
-    <script>
-        var global_config = {}
-        global_config.canvas_width_scale  = 0.2
-        global_config.canvas_height_scale = 1.0
-    </script>
     <script src='global.js'></script>
     <script src='perlin.js'></script>
     <script src='perlin_adv.js'></script>
@@ -21,7 +16,7 @@
     <script src="script.js"></script>
     
     <body onload="init()">
-        <canvas id="canvas_src"></canvas>
+        
 
         <div id="document_src">
 
@@ -73,11 +68,10 @@
         主な研究内容
         <br>
         <br>
-
         
-    <table>
+    <table class="Mobile-table">
         <tr>
-        <td>
+        <td style="min-width:200px; overflow-wrap: break-word;">
             ・CurtainRail構造<span class="Plain_text_note_f"> 空間データ索引構造 </span>
             <a href="https://github.com/TadaTeruki/CurtainRail" target="_blank"><img src="resources/GitHub_logo.png" class="Github_Icon_mini_f"></a><br>
             <div class="Plain_text_details_f">
@@ -114,7 +108,7 @@
     <br>
     <table>
         <tr>
-        <td>
+            <td style="min-width:200px; overflow-wrap: break-word;">
             ・RDGL
             <br>
             <div class="Plain_text_details_f">
@@ -127,7 +121,7 @@
             <div class="Line_development_table_f"></div>
         </td>
         <td style="padding-left: 50px;">
-            <img src="https://user-images.githubusercontent.com/69315285/146559610-53b8e21f-3574-4cff-a7ee-0b7c13c32c13.png" style="height: 150px; margin-right: 10px;"><img src="https://user-images.githubusercontent.com/69315285/146560007-9976a0e6-a81e-4533-a7aa-e200611d8a06.png" style="height: 150px;">
+            <img src="https://user-images.githubusercontent.com/69315285/146559610-53b8e21f-3574-4cff-a7ee-0b7c13c32c13.png" style="height: 150px; margin-right: 10px;"><img src="https://user-images.githubusercontent.com/69315285/146560007-9976a0e6-a81e-4533-a7aa-e200611d8a06.png" style="max-height: 150px;min-height: 0px;">
             
         </td>
         </tr>
@@ -149,7 +143,7 @@
                 <div class="Line_development_table_f"></div>
             </td>
             <td style="padding-left: 50px;">
-                <img src="https://user-images.githubusercontent.com/57752033/89993297-73557280-dcc1-11ea-9b95-777de9911a19.png" style="height: 150px;">
+                <img src="https://user-images.githubusercontent.com/57752033/89993297-73557280-dcc1-11ea-9b95-777de9911a19.png" style="max-height: 150px;">
             </td>
         </tr>
         <tr>
@@ -214,29 +208,37 @@
     
     <div class="Subtitle_f">このページについて <span class="Subtitle_note_f">About this page</span></div>
     <div class="Line_subtitle_f"></div>
-    <div class="Plain_text_f">
-        このページの<u>右</u>に表示されている航空地図は、自動生成によるものであり、<u>無限に続いています。</u>
+
+    
+    <div class="Plain_text_f" style="margin-bottom: 40px;">
+        
+        このページの側面に表示されている航空地図は、自動生成によるものであり、<u>無限に続いています。</u>
+        <br>
+        (モバイル端末の場合は、代わりにこの文章の最下部分に表示されています。)
         <br>
         ぜひこの地図を眺めながら、地形生成の魅力を実感していただければと思います。
         <br>
         <span class="Plain_text_note_f"> &emsp;マウスや指によるドラッグにより、地図のフォーカスが移動します。</span>
         <br>
-        <span class="Plain_text_note_f"> &emsp;マウスホイール操作やピンチイン/アウトにより、地図の表示範囲の大きさが変化します。</span>
+        <span class="Plain_text_note_f"> &emsp;マウスホイール操作により、地図の表示範囲の大きさが変化します。</span>
         <br>
         <br>
-        このポートフォリオを気に入られた方は、ぜひとも<a href="https://github.com/TadaTeruki/Portfolio_2022"><img src="resources/GitHub_logo.png" class="Github_Icon_mini_f"></a>レポジトリのStar⭐をお願いします。
+        このポートフォリオを気に入られた方は、ぜひ<a href="https://github.com/TadaTeruki/Portfolio_2022" target="_blank"><img src="resources/GitHub_logo.png" class="Github_Icon_mini_f"></a>レポジトリのStar⭐をお願いします。
         <br>
+        
     </div>
-
 </div>
+<canvas id="canvas_src" width="0" height="0"></canvas>
 
-<div class="Title_f" style="margin-top:80px;padding-bottom: 50px;">
+
+
+<div class="Title_f" style="margin-top:40px;padding-bottom: 50px;">
     <div class="Plain_text_f">
         制作 : 多田 瑛貴 (ただ てるき)
         <br>
         最終更新 : 2020/12/28
         <br>
-        このページの公開には<a href="https://pages.github.com/">GitHub Pages</a>を使用しています。
+        このページの公開には<a href="https://pages.github.com/" target="_blank">GitHub Pages</a>を使用しています。
     </div>
 </div>
 
