@@ -31,8 +31,8 @@ function set_screen(){
     screen.subcanvas.height = screen.canvas.height;
     screen.square_cwh = min(screen.subcanvas.width, screen.subcanvas.height);
 
-    var docs = document.getElementById("document_src");
-    docs.style.width = screen.canvas.style.left
+    screen.docs = document.getElementById("document_src");
+    screen.docs.style.width = screen.canvas.style.left
     
     
     screen.square = {st_sx:0.0,

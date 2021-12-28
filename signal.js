@@ -109,3 +109,15 @@ function scroll_process(mouse_device, mouse_event){
     shift_map(d_stx, d_sty);
 
 }
+
+function auto_scroll_process(cx, cy){
+    var d_stx = x_canvas_to_standard(cx) - x_canvas_to_standard(0)
+    var d_sty = y_canvas_to_standard(cy) - y_canvas_to_standard(0)
+    var p_square = screen.square
+    p_square.st_sx = p_square.st_sx+d_stx
+    p_square.st_ex = p_square.st_ex+d_stx
+    p_square.st_sy = p_square.st_sy+d_sty
+    p_square.st_ey = p_square.st_ey+d_sty
+    screen.square = p_square
+    shift_map(d_stx, d_sty);
+}
