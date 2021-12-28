@@ -132,8 +132,12 @@ canvas{
 
 @media only screen and (max-width: 700px) {
     .Mobile-table tr,
-    .Mobile-table th,
     .Mobile-table td {
         display: block;
     }
+
+    .Mobile-table tr{
+        margin-bottom: 70px;
+    }
+
 }

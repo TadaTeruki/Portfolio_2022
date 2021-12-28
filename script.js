@@ -11,7 +11,7 @@ function set_aspect(){
 
     var width_scale, height_scale
 
-    screen.mobile_mode = window.innerWidth*(1.0+global_config.min_acpect_scale) < window.innerHeight
+    screen.mobile_mode = window.innerWidth <= 700//window.innerWidth*(1.0+global_config.min_acpect_scale) < window.innerHeight
 
     if(screen.mobile_mode){
         width_scale = 1.0
