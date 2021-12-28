@@ -9,6 +9,17 @@ function get_community_level(stx, sty, elevation){
     return get_community_level_from_noise_level(nlv, elevation);
 }
 
+function get_cloud_level(stx, sty, elevation){
+    var nlv = get_octave_noise(
+                stx*global_config.cloud_dencity+256.0,
+                sty*global_config.cloud_dencity+256.0,
+                global_config.noise_quality_cloud,
+                global_config.noise_persistence_cloud
+            )
+    return Math.max(0.0, (nlv-(1.0-global_config.cloud_prop))/global_config.cloud_prop);
+}
+
+
 function get_community_level_from_noise_level(nlv, elevation) {
 
     if(elevation < 0.0) return 0.0

@@ -35,14 +35,24 @@ body {
     width: 100%;
 }
 .Github_Icon_f{
-    background: linear-gradient(45deg, #1a1a1a, #505050);
+    background: #333333;
     padding: 7px 7px 7px 7px;
     height:30px;
 }
+
+.Github_Icon_mini_f{
+    vertical-align: middle;
+    height:25px;
+}
 .Twitter_Icon_f{
-    background: linear-gradient(45deg, #1da1f2, #32b0ff);
+    background: #1da1f2;
     padding: 10px 8px 10px 8px;
     height: 24px;
+}
+.Qiita_Icon_f{
+    background: #ffffff;
+    padding: 7px 7px 7px 7px;
+    height: 30px;
 }
 .Icon_f{
     box-shadow: 1px 1px 5px #5e5e5e;

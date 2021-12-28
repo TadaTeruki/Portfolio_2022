@@ -75,9 +75,7 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
 
     var image = screen.subctx.getImageData(remain_scx, remain_scy, screen.subcanvas.width, screen.subcanvas.height);
     var data = image.data
-    var nw_cell_id, se_cell_id//get_mark_cell_id(istx, isty, 0.1)
-    //var community_list_by_cell_id = {} // {max_community_level, stx, sty}
-    
+    var nw_cell_id, se_cell_id
 
     if(fill_all_pixel == true){
         for(var i = 0; i<data.length; i+=4){
@@ -126,6 +124,18 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
                 color.b = community_color.b*color_prop+color.b*(1.0-color_prop)
 
             }
+
+            /*cloud*/{
+                var cloud_shadow_level = get_cloud_level(istx/global_config.cloud_width_scale, isty-global_config.cloud_shadow_st)
+                color.r = color.r-color.r*cloud_shadow_level
+                color.g = color.g-color.g*cloud_shadow_level
+                color.b = color.b-color.b*cloud_shadow_level
+
+                var cloud_level = get_cloud_level(istx/global_config.cloud_width_scale, isty)
+                color.r = color.r+(255-color.r)*cloud_level
+                color.g = color.g+(255-color.g)*cloud_level
+                color.b = color.b+(255-color.b)*cloud_level
+            }
             
             data[i+0]= color.r
             data[i+1]= color.g
@@ -140,23 +150,23 @@ function draw_map(d_stx, d_sty, fill_all_pixel){
 
     display_map()
 
-    return
-
-    /*community_mark*/
-    for(var id_y = nw_cell_id.y; id_y <= se_cell_id.y; id_y += 1){
-        for(var id_x = nw_cell_id.x; id_x <= se_cell_id.x; id_x += 1){
-            if(id_y in global_community_list_by_cell_id == false){
-                global_community_list_by_cell_id[id_y] = {}
+    if(global_config.advanced_information_is_available){
+        /*community_mark*/
+        for(var id_y = nw_cell_id.y; id_y <= se_cell_id.y; id_y += 1){
+            for(var id_x = nw_cell_id.x; id_x <= se_cell_id.x; id_x += 1){
+                if(id_y in global_community_list_by_cell_id == false){
+                    global_community_list_by_cell_id[id_y] = {}
+                }
+                if(id_x in global_community_list_by_cell_id[id_y] == false){
+                    global_community_list_by_cell_id[id_y][id_x] = get_community_mark_from_cell_id(id_x, id_y, global_config.community_mark_cell_st, global_config.community_mark_position_unit_scale)
+                }
+                var community_mark = global_community_list_by_cell_id[id_y][id_x]
+                screen.ctx.beginPath();
+                screen.ctx.arc(x_standard_to_canvas(community_mark.stx), y_standard_to_canvas(community_mark.sty), 5, 0, Math.PI*2, false)
+                screen.ctx.fill()
             }
-            if(id_x in global_community_list_by_cell_id[id_y] == false){
-                global_community_list_by_cell_id[id_y][id_x] = get_community_mark_from_cell_id(id_x, id_y, global_config.community_mark_cell_st, global_config.community_mark_position_unit_scale)
-            }
-            var community_mark = global_community_list_by_cell_id[id_y][id_x]
-            screen.ctx.beginPath();
-            screen.ctx.arc(x_standard_to_canvas(community_mark.stx), y_standard_to_canvas(community_mark.sty), 5, 0, Math.PI*2, false)
-            screen.ctx.fill()
-        }
-    } 
+        } 
+    }
 }
 
 function shift_map(d_stx, d_sty){

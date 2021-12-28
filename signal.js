@@ -59,24 +59,31 @@ function zoom_process(mouse_device, wheel_event){
 
     var scale = Math.pow(global_config.zoom_scale, wheel_event.deltaY);
     
+    
     var p_square = screen.square
     var xw = p_square.st_ex-p_square.st_sx
     var yw = p_square.st_ey-p_square.st_sy
+
+    if(Math.min(xw,yw)*scale < global_config.min_map_scale || Math.max(xw,yw)*scale > global_config.max_map_scale){
+        return
+    }
     var x_side_sum = (xw-xw*scale)
     var y_side_sum = (yw-yw*scale)
     var x_start_side_prop = (mouse_device.pos_stx-p_square.st_sx)/xw
     var y_start_side_prop = (mouse_device.pos_sty-p_square.st_sy)/yw
+
+    
 
     set_square_root()
     p_square.st_sx = p_square.st_sx+x_side_sum*x_start_side_prop
     p_square.st_ex = p_square.st_ex-x_side_sum*(1.0-x_start_side_prop)
     p_square.st_sy = p_square.st_sy+y_side_sum*y_start_side_prop
     p_square.st_ey = p_square.st_ey-y_side_sum*(1.0-y_start_side_prop)
+
     screen.square = p_square
 
     scale_map(mouse_device.pos_stx, mouse_device.pos_sty, scale);
     shift_map(0, 0);
-
     
 }
 
@@ -89,9 +96,6 @@ function scroll_process(mouse_device, mouse_event){
     if ( mouse_device.is_held == false ) {
         return
     }
-
-    //update_wait_count()
-    //set_map_init()
 
     var event_stx = x_canvas_to_standard(x_event_to_canvas(mouse_event.x))
     var event_sty = y_canvas_to_standard(y_event_to_canvas(mouse_event.y))

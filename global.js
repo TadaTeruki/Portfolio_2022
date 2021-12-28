@@ -5,7 +5,9 @@ var global_community_list_by_cell_id = {}
 function set_screen(){
     global_config.map_init_process_wait_sec = 0.75
     global_config.zoom_scale = 1.02
-    global_config.map_scale = 0.05
+    global_config.map_scale = 0.2
+    global_config.max_map_scale = 0.5
+    global_config.min_map_scale = 0.05
     global_config.community_area_prop = 0.5
     global_config.community_dencity = 50.0
     global_config.noise_quality_eleation = 12
@@ -17,6 +19,14 @@ function set_screen(){
     global_config.community_mark_position_unit_scale = 0.2
     global_config.canvas_x_scale = 1.0 - global_config.canvas_width_scale 
     global_config.canvas_y_scale = 0.0
+    global_config.community_is_available = false
+
+    global_config.cloud_dencity = 5.0
+    global_config.cloud_prop = 1.0
+    global_config.cloud_width_scale = 1.5
+    global_config.cloud_shadow_st = 0.005
+    global_config.noise_quality_cloud = 8
+    global_config.noise_persistence_cloud = 0.6
 
     screen.canvas = document.getElementById("canvas_src");
     screen.ctx = screen.canvas.getContext("2d");

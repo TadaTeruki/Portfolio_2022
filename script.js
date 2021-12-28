@@ -22,7 +22,7 @@ function main(){
 
     var auto_scroll = {}
     auto_scroll.interval = 70
-    auto_scroll.max_wait = 30
+    auto_scroll.max_wait = 0
     auto_scroll.max_speed_st = 1.0
     var auto_scroll_speed_st = 0.0
     var auto_scroll_wait = 0
