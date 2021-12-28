@@ -24,8 +24,8 @@ function set_aspect(){
     screen.canvas.y_scale = 1.0 - height_scale
     screen.canvas.style.left = window.innerWidth*screen.canvas.x_scale
     screen.canvas.style.top = window.innerHeight*screen.canvas.y_scale
-    screen.canvas.width = window.innerWidth*width_scale
-    screen.canvas.height = window.innerHeight*height_scale
+    screen.canvas.width = window.innerWidth*width_scale+1
+    screen.canvas.height = window.innerHeight*height_scale+1
     screen.subcanvas.width = screen.canvas.width
     screen.subcanvas.height = screen.canvas.height
     screen.docs.style.width = screen.mobile_mode ? window.innerWidth:screen.canvas.style.left

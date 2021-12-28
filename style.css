@@ -25,7 +25,7 @@ canvas{
     margin-right: 10%;
 }
 
-.Line_development_table_f{
+.Line_category_table_f{
     border-bottom:dashed 2px #606e66;
     height: 1px;
     margin-top: 30px;
@@ -130,14 +130,7 @@ canvas{
     color: #830000;
 }
 
-@media only screen and (max-width: 700px) {
-    .Mobile-table tr,
-    .Mobile-table td {
-        display: block;
-    }
-
-    .Mobile-table tr{
-        margin-bottom: 70px;
-    }
-
+.Gallary_f{
+    padding-left: 50px;
+    padding-top: 30px;
 }
