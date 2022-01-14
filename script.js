@@ -11,7 +11,7 @@ function set_aspect(){
 
     var width_scale, height_scale
 
-    screen.mobile_mode = window.innerWidth <= 700//window.innerWidth*(1.0+global_config.min_acpect_scale) < window.innerHeight
+    screen.mobile_mode = window.innerWidth < window.innerHeight
 
     if(screen.mobile_mode){
         width_scale = 1.0
@@ -80,13 +80,16 @@ function main(){
         auto_scroll_wait = auto_scroll.max_wait
     });
     screen.canvas.addEventListener('wheel', event => {
-        event.preventDefault();
+        event.preventDefault()
         zoom_process(mouse_device, event)
         auto_scroll_enabled = false
+        
     });
+    
     screen.docs.addEventListener('wheel', event => {
-        auto_scroll_process(0.0, 1.0*(event.deltaY < 0 ? -1.0:1.0))
+        auto_scroll_process(0.0, 2.0*(event.deltaY < 0 ? -1.0:1.0))
     });
+    
     screen.canvas.addEventListener('mousemove', event => {
         scroll_process(mouse_device, event)
         if( mouse_device.is_held == true ){

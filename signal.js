@@ -54,6 +54,7 @@ function zoom_process(mouse_device, wheel_event){
         return
     }
 
+
     update_wait_count()
     set_map_init()
 
@@ -67,6 +68,8 @@ function zoom_process(mouse_device, wheel_event){
     if(Math.min(xw,yw)*scale < global_config.min_map_scale || Math.max(xw,yw)*scale > global_config.max_map_scale){
         return
     }
+
+
     var x_side_sum = (xw-xw*scale)
     var y_side_sum = (yw-yw*scale)
     var x_start_side_prop = (mouse_device.pos_stx-p_square.st_sx)/xw

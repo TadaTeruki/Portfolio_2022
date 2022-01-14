@@ -5,7 +5,7 @@ var global_community_list_by_cell_id = {}
 
 function set_screen(){
     global_config.map_init_process_wait_sec = 0.75
-    global_config.zoom_scale = 1.02
+    global_config.zoom_scale = 1.001
     global_config.map_scale = 0.2
     global_config.max_map_scale = 0.5
     global_config.min_map_scale = 0.05
